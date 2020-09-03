@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+    proxy:
+        image: nginx
+        ports: 
+            - "80:8080"
+        volumes: 
+            - ./nginx/reverse_proxy.conf:/etc/nginx/conf.d/default.conf
+        networks: 
+            - front
+            - back
+    bff:
+        build: ./bff
+        restart: always
+        networks: 
+            - back
+    donations:
+        build: ./donations-api
+        restart: always
+        ports: 
+            - "5432:5432"
+        networks: 
+            - back
+    volunteers:
+        build: ./volunteers_api
+        restart: always
+        ports: 
+            - "5432:5432"
+        networks: 
+            - back
+    mailer:
+        build: ./mailer-api
+        restart: always
+        ports: 
+            - "5432:5432"
+        networks: 
+            - back
+    task:
+        build: ./task_api
+        restart: always
+        ports: 
+            - "5432:5432"
+        networks: 
+            - back
+    web:
+        build: ./web-donaciones
+        restart: always
+        networks: 
+            - front
+networks: 
+    front:
+    back:
