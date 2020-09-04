@@ -38,6 +38,7 @@ services:
             DB_NAME: 'voluntariado_ing'
             DB_USER: 'postgres'
             DB_PASS: 'ysl*gzzjic4Taok'
+            DB_PORT: 5432
         restart: always
         networks: 
             - back
@@ -50,6 +51,7 @@ services:
             DB_NAME: 'voluntariado_ing'
             DB_USER: 'postgres'
             DB_PASS: 'ysl*gzzjic4Taok'
+            DB_PORT: 5432
         restart: always
         networks: 
             - back
