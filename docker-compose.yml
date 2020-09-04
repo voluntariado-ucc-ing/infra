@@ -10,40 +10,45 @@ services:
             - front
             - back
     bff:
-        build: ./bff
+        build: ../bff
+        environment:
+            VA_IP: 'volunteers'
+            VA_PORT: 8080
+            DA_IP: 'donations'
+            DA_PORT: 8080
         restart: always
         networks: 
             - back
     donations:
-        build: ./donations-api
+        build: ../donations-api
         restart: always
         ports: 
             - "5432:5432"
         networks: 
             - back
     volunteers:
-        build: ./volunteers_api
+        build: ../volunteers_api
         restart: always
         ports: 
             - "5432:5432"
         networks: 
             - back
     mailer:
-        build: ./mailer-api
+        build: ../mailer-api
         restart: always
         ports: 
             - "5432:5432"
         networks: 
             - back
     task:
-        build: ./task_api
+        build: ../task_api
         restart: always
         ports: 
             - "5432:5432"
         networks: 
             - back
     web:
-        build: ./web-donaciones
+        build: ../web-donaciones
         restart: always
         networks: 
             - front
