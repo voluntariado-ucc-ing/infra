@@ -7,7 +7,7 @@ services:
             - ../.postgres-data:/var/lib/postgresql/data
         environment:
             POSTGRES_PASSWORD: ysl*gzzjic4Taok
-            POSTGRES_DB: voluntariado_ing
+            
         networks: 
             - back
     proxy:

@@ -1,6 +1,8 @@
-use voluntariado_ing;
+create database voluntariado_ing; 
+\c voluntariado_ing;
 
-create table directions if not exists
+DROP DATABASE IF EXISTS directions;
+create table directions 
 (
 	direction_id bigserial not null
 		constraint directions_pk
@@ -18,7 +20,9 @@ alter table directions owner to postgres;
 create unique index directions_direction_id_uindex
 	on directions (direction_id);
 
-create table permissions if not exists
+
+DROP DATABASE IF EXISTS permissions;
+create table permissions 
 (
 	permission_id bigserial not null
 		constraint permissions_pk
@@ -31,7 +35,8 @@ alter table permissions owner to postgres;
 create unique index permissions_permission_id_uindex
 	on permissions (permission_id);
 
-create table medical_info if not exists
+DROP DATABASE IF EXISTS medical_info;
+create table medical_info 
 (
 	medical_info_id bigserial not null
 		constraint medical_info_pk
@@ -44,7 +49,8 @@ alter table medical_info owner to postgres;
 create unique index medical_info_medical_info_id_uindex
 	on medical_info (medical_info_id);
 
-create table roles if not exists
+DROP DATABASE IF EXISTS roles;
+create table roles 
 (
 	role_id bigserial not null
 		constraint roles_pk
@@ -57,7 +63,8 @@ alter table roles owner to postgres;
 create unique index roles_role_id_uindex
 	on roles (role_id);
 
-create table roles_permissions if not exists
+DROP DATABASE IF EXISTS roles_permissions;
+create table roles_permissions 
 (
 	role_id bigint
 		constraint roles_permissions_roles_role_id_fk
@@ -69,7 +76,8 @@ create table roles_permissions if not exists
 
 alter table roles_permissions owner to postgres;
 
-create table donation_types if not exists
+DROP DATABASE IF EXISTS donation_types;
+create table donation_types 
 (
 	donation_type_id bigserial not null
 		constraint donation_types_pk
@@ -82,7 +90,8 @@ alter table donation_types owner to postgres;
 create unique index donation_types_donation_type_id_uindex
 	on donation_types (donation_type_id);
 
-create table volunteer_details if not exists
+DROP DATABASE IF EXISTS volunteer_details;
+create table volunteer_details 
 (
 	volunteer_details_id bigserial not null
 		constraint volunteer_details_pk
@@ -107,7 +116,8 @@ alter table volunteer_details owner to postgres;
 create unique index volunteer_details_volunteer_details_id_uindex
 	on volunteer_details (volunteer_details_id);
 
-create table volunteers if not exists
+DROP DATABASE IF EXISTS volunteers;
+create table volunteers 
 (
 	volunteer_id bigserial not null
 		constraint volunteers_pk
@@ -134,7 +144,8 @@ create unique index volunteers_username_uindex
 create unique index volunteers_volunteer_id_uindex
 	on volunteers (volunteer_id);
 
-create table donators if not exists
+DROP DATABASE IF EXISTS donators;
+create table donators 
 (
 	donator_id bigserial not null
 		constraint donators_pk
@@ -153,7 +164,8 @@ create unique index donators_donator_id_uindex
 create unique index donators_mail_uindex
 	on donators (mail);
 
-create table donations if not exists
+DROP DATABASE IF EXISTS donations;
+create table donations 
 (
 	donation_id bigserial not null
 		constraint donations_pk
@@ -180,7 +192,8 @@ alter table donations owner to postgres;
 create unique index donations_donation_id_uindex
 	on donations (donation_id);
 
-create table volunteers_roles if not exists
+DROP DATABASE IF EXISTS volunteers_roles;
+create table volunteers_roles 
 (
 	volunteer_id bigint
 		constraint volunteers_roles_volunteers_volunteer_id_fk
@@ -192,7 +205,8 @@ create table volunteers_roles if not exists
 
 alter table volunteers_roles owner to postgres;
 
-create table events if not exists
+DROP DATABASE IF EXISTS events;
+create table events 
 (
 	event_id bigserial not null
 		constraint events_pk
@@ -212,7 +226,8 @@ alter table events owner to postgres;
 create unique index events_event_id_uindex
 	on events (event_id);
 
-create table meetings if not exists
+DROP DATABASE IF EXISTS meetings;
+create table meetings 
 (
 	meeting_id bigserial not null
 		constraint meetings_pk
@@ -236,7 +251,8 @@ alter table meetings owner to postgres;
 create unique index meetings_meeting_id_uindex
 	on meetings (meeting_id);
 
-create table volunteers_meetings if not exists
+DROP DATABASE IF EXISTS volunteers_meetings;
+create table volunteers_meetings 
 (
 	volunteer_id bigint
 		constraint volunteers_meetings_volunteers_volunteer_id_fk
@@ -248,7 +264,8 @@ create table volunteers_meetings if not exists
 
 alter table volunteers_meetings owner to postgres;
 
-create table tasks if not exists
+DROP DATABASE IF EXISTS tasks;
+create table tasks 
 (
 	task_id bigserial not null
 		constraint tasks_pk
@@ -267,7 +284,8 @@ alter table tasks owner to postgres;
 create unique index tasks_task_id_uindex
 	on tasks (task_id);
 
-create table volunteers_tasks if not exists
+DROP DATABASE IF EXISTS volunteers_tasks;
+create table volunteers_tasks 
 (
 	volunteer_id bigint
 		constraint volunteers_tasks_volunteers_volunteer_id_fk
