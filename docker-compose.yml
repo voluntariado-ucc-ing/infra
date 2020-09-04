@@ -1,5 +1,13 @@
 version: "3.8"
 services:
+    db:
+        image: postgres
+        volumes: 
+            - ./migrations.sql:/docker-entrypoint-initdb.d/migrations.sql
+            - ../.postgres-data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: ysl*gzzjic4Taok
+            POSTGRES_DB: voluntariado_ing
     proxy:
         image: nginx
         ports: 
@@ -10,7 +18,7 @@ services:
             - front
             - back
     bff:
-        build: ../bff
+        build: ../bff/
         environment:
             VA_IP: 'volunteers'
             VA_PORT: 8080
@@ -20,28 +28,32 @@ services:
         networks: 
             - back
     donations:
-        build: ../donations-api
+        build: ../donations-api/
+        environment:
+            DB_HOST: 'db'
+            DB_NAME: 'voluntariado_ing'
+            DB_USER: 'postgres'
+            DB_PASS: 'ysl*gzzjic4Taok'
         restart: always
-        ports: 
-            - "5432:5432"
         networks: 
             - back
     volunteers:
-        build: ../volunteers_api
+        build: ../volunteer_api/
+        environment:
+            DB_HOST: 'db'
+            DB_NAME: 'voluntariado_ing'
+            DB_USER: 'postgres'
+            DB_PASS: 'ysl*gzzjic4Taok'
         restart: always
-        ports: 
-            - "5432:5432"
         networks: 
             - back
     mailer:
-        build: ../mailer-api
+        build: ../mailer-api/
         restart: always
-        ports: 
-            - "5432:5432"
         networks: 
             - back
     web:
-        build: ../web-donaciones
+        build: ../web-donaciones/
         restart: always
         networks: 
             - front
