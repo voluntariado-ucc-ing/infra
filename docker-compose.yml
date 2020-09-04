@@ -17,6 +17,8 @@ services:
         networks: 
             - front
             - back
+        depends_on:
+            - db
     bff:
         build: ../bff/
         environment:
@@ -27,6 +29,8 @@ services:
         restart: always
         networks: 
             - back
+        depends_on:
+            - db
     donations:
         build: ../donations-api/
         environment:
@@ -37,6 +41,8 @@ services:
         restart: always
         networks: 
             - back
+        depends_on:
+            - db
     volunteers:
         build: ../volunteer_api/
         environment:
@@ -47,11 +53,15 @@ services:
         restart: always
         networks: 
             - back
+        depends_on:
+            - db
     mailer:
         build: ../mailer-api/
         restart: always
         networks: 
             - back
+        depends_on:
+            - db
     web:
         build: ../web-donaciones/
         restart: always
