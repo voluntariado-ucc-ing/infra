@@ -40,13 +40,6 @@ services:
             - "5432:5432"
         networks: 
             - back
-    task:
-        build: ../task_api
-        restart: always
-        ports: 
-            - "5432:5432"
-        networks: 
-            - back
     web:
         build: ../web-donaciones
         restart: always
