@@ -297,3 +297,7 @@ create table volunteers_tasks
 
 alter table volunteers_tasks owner to postgres;
 
+INSERT INTO donation_types (name) VALUES ('Herramientas');
+INSERT INTO donation_types (name) VALUES ('Materiales de Construccion');
+INSERT INTO donation_types (name) VALUES ('Ropa y calzado');
+INSERT INTO donation_types (name) VALUES ('Alimentos');
