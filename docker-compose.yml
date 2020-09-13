@@ -68,9 +68,12 @@ services:
             - db
     web:
         build: ../web-donaciones/
+        environment:
+            API_DOMAIN: 'voluntariadoing.ucc.edu.ar/'
         restart: always
         networks: 
             - front
+            - back 
 networks: 
     front:
     back:
