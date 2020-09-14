@@ -57,11 +57,14 @@ services:
             DB_USER: 'postgres'
             DB_PASS: 'ysl*gzzjic4Taok'
             DB_PORT: 5432
+            REDIS_HOST: cache
+            REDIS_PORT: 6379
         restart: always
         networks: 
             - back
         depends_on:
             - db
+            - cache
     mailer:
         build: ../mailer-api/
         restart: always
