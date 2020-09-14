@@ -6,12 +6,12 @@ services:
             - ./migrations.sql:/docker-entrypoint-initdb.d/migrations.sql
             - ../.postgres-data:/var/lib/postgresql/data
         environment:
-            POSTGRES_PASSWORD: ysl*gzzjic4Taok
-            
+            POSTGRES_PASSWORD: ysl*gzzjic4Taok            
         networks: 
             - back
     proxy:
         image: nginx
+        restart: always
         ports: 
             - "80:8080"
         volumes: 
@@ -28,11 +28,14 @@ services:
             VA_PORT: 8080
             DA_IP: 'donations'
             DA_PORT: 8080
+            REDIS_HOST: cache
+            REDIS_PORT: 6379
         restart: always
         networks: 
             - back
         depends_on:
             - db
+            - cache
     donations:
         build: ../donations-api/
         environment:
@@ -73,6 +76,13 @@ services:
         restart: always
         networks: 
             - front
+            - back 
+    cache:
+        image: redis:alpine
+        volumes:
+            - ../.redis-data:/data
+        restart: always
+        networks: 
             - back 
 networks: 
     front:
