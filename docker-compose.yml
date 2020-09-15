@@ -65,13 +65,6 @@ services:
         depends_on:
             - db
             - cache
-    mailer:
-        build: ../mailer-api/
-        restart: always
-        networks: 
-            - back
-        depends_on:
-            - db
     web:
         build: ../web-donaciones/
         environment:
