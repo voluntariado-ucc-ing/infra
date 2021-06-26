@@ -41,7 +41,39 @@ create table medical_info
 	medical_info_id bigserial not null
 		constraint medical_info_pk
 			primary key,
-	data json
+	emergency_number varchar(256) not null,
+    insurance_name varchar(256) not null,
+    hospital_center varchar(256) not null,
+    blood_type varchar(256) not null,
+    antitetanic boolean not null,
+    antitetanic_year varchar(256),
+    medical_treatment varchar(256),
+    uses_medicines boolean not null,
+    medicine_type varchar(256),
+    medicine_frecuency varchar(256),
+    has_allergies boolean not null,
+    alergies varchar(256),
+    has_alergie_to_medicine boolean not null,
+    alergic_medicine_type varchar(256),
+    has_heart_desease boolean not null,
+    heart_desease varchar(256),
+    has_hypertension boolean not null,
+    has_lipothymy boolean not null,
+    has_neuro_desease boolean not null,
+    neuro_desease varchar(256),
+    has_diabetes boolean not null,
+    has_asthma boolean not null,
+    has_digestive_desease boolean not null,
+    digestive_desease varchar(256),
+    has_endocrinological_desease boolean not null,
+    endocrinological_desease varchar(256),
+    has_spine_alterations boolean not null,
+    spine_alterations varchar(256),
+    has_coagulation_desorder boolean not null,
+    smokes boolean not null,
+    has_food_intolerances boolean not null,
+    food_intolerance varchar(256),
+    others varchar(512)
 );
 
 alter table medical_info owner to postgres;
